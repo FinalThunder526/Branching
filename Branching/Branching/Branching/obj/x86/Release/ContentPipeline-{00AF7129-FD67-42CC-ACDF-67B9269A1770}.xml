@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{00AF7129-FD67-42CC-ACDF-67B9269A1770}</ContentProjectGUID>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Release</BuildConfiguration>
+      <CompressContent>true</CompressContent>
+      <RootDirectory>C:\Users\Sarang\Documents\GitHub\Branching\Branching\Branching\BranchingContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Sarang\Documents\GitHub\Branching\Branching\Branching\Branching\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Sarang\Documents\GitHub\Branching\Branching\Branching\Branching\obj\x86\Release\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Sarang\Documents\GitHub\Branching\Branching\Branching\Branching\bin\x86\Release\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2012-01-30T20:09:14.3681754-08:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
