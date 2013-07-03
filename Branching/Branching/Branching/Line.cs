@@ -25,7 +25,8 @@ namespace Branching
             pt1 = p1;
             pt2 = p2;
 
-            angle = MathHelper.ToDegrees(Game1.getAngleFromVector(pt2 - pt1));
+            angle = MathHelper.ToDegrees((float)Math.Atan2(pt2.Y -pt1.Y, pt2.X - pt1.X)/*Game1.getAngleFromVector(pt2 - pt1)*/);
+            angle = (angle < 0) ? angle + 360 : angle;
         }
         /// <summary>
         /// Normal Constructor.
@@ -35,7 +36,9 @@ namespace Branching
         /// <param name="p2">Final point.</param>
         public Line(GraphicsDevice GraphicsDev, Vector2 p1, Vector2 p2) : this(GraphicsDev, 1f, Color.White, p1, p2)
         { }
-
+        public Line(GraphicsDevice GraphicsDev, Color c, Vector2 p1, Vector2 p2): this(GraphicsDev, 1f, c, p1, p2)
+        { }
+                
         /// <summary>
         /// Awesome program to draw a line.
         /// </summary>

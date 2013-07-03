@@ -16,10 +16,14 @@ namespace Branching
     /// </summary>
     class RandomLineSet
     {
-        List<Line> LineSet;
-        int length = 10;
         Vector2 Origin;
         GraphicsDevice gd;
+
+        List<Line> LineSet;
+        /// <summary>
+        /// Length of the lineset at any given time.
+        /// </summary>
+        int length = 10;
         /// <summary>
         /// This is the original base angle for the very first line.
         /// </summary>
@@ -40,8 +44,9 @@ namespace Branching
         int tempMax;
         int antiPrecision = 4;
         Random r;
+        Color c;
 
-        public RandomLineSet(Vector2 newOrigin, GraphicsDevice newGD, int newDegreeRange, int newBaseAngleD, int newMax, int newTempMax)
+        public RandomLineSet(Vector2 newOrigin, GraphicsDevice newGD, int newDegreeRange, int newBaseAngleD, int newMax, int newTempMax, Color newC)
         {
             LineSet = new List<Line>();
             Origin = newOrigin;
@@ -51,6 +56,7 @@ namespace Branching
             maxNOfLines = newMax;
             tempMax = newTempMax;
             r = new Random();
+            c = newC;
         }
 
         public void Initialize()
@@ -61,7 +67,7 @@ namespace Branching
                 //LineSet.Add(new Line(gd, Origin, createRandomFinishPoint(Origin, 45)));
 
                 // Here, this is set to the baseAngleDegree in the beginning.
-                LineSet.Add(new Line(gd, Origin, Origin + length * new Vector2((float)Math.Cos(baseAngleDegree), (float)Math.Sin(baseAngleDegree))));
+                LineSet.Add(new Line(gd, 3f, c, Origin, Origin + length * new Vector2((float)Math.Cos(baseAngleDegree), (float)Math.Sin(baseAngleDegree))));
             }
         }
         /// <summary>
@@ -79,7 +85,7 @@ namespace Branching
                 // As long as the number of lines hasn't reached the max total number of lines, keep adding.
                 if (LineSet.Count != 0 && nOfLines < maxNOfLines)
                 {
-                    LineSet.Add(new Line(gd, LineSet.Last<Line>().pt2,
+                    LineSet.Add(new Line(gd, 3f, c, LineSet.Last<Line>().pt2,
                         createRandomFinishPoint(LineSet.Last<Line>().pt2, (int)LineSet.Last<Line>().angle)));
                     nOfLines++;
                 }

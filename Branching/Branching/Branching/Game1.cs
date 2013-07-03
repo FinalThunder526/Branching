@@ -21,7 +21,12 @@ namespace Branching
 
         List<Line> LineSet;
         List<RandomLineSet> rLineSetSet;
-        
+
+        SpriteFont Font1;
+
+        enum ColorMode { Random, AngleBased };
+        ColorMode thisColor = ColorMode.AngleBased;
+
         int counter = 0;
         /// <summary>
         /// How often the program checks for a new line.
@@ -75,7 +80,7 @@ namespace Branching
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            Font1 = Content.Load<SpriteFont>("Font1");
         }
 
         /// <summary>
@@ -125,7 +130,8 @@ namespace Branching
 
                 }
                 #endregion
-                // A line (or multiple lines) of set length is added based on the new position and the previous line's pt2.
+                // A line (or multiple lines) of set length is added based on the new position 
+                // and the previous line's pt2.
                 #region Style 1
                 else if (styleN == 1)
                 {
@@ -162,7 +168,16 @@ namespace Branching
             // Every extraAntiPrecision, a new RandomLineSet is added to the end of the 
             if (counter % 7 == 0)
             {
-                rLineSetSet.Add(new RandomLineSet(LineSet.Last<Line>().pt2, GraphicsDevice, 60, r.Next(360), 60, 10));
+                int a = (int)LineSet.Last<Line>().angle - 30 + r.Next(60);
+                Color c = Color.White;
+                if (thisColor == ColorMode.Random)
+                    c = new Color(r.Next(256), r.Next(256), r.Next(256));
+                else if (thisColor == ColorMode.AngleBased)
+                {
+                    c = new Color((int) (100 + (156.0 * a) / 360.0), 0, 0);
+                }
+                rLineSetSet.Add(new RandomLineSet(LineSet.Last<Line>().pt2, GraphicsDevice, 60,
+                    /*angle:*/ a, 18, 6, c));
             }
 
             // Update each of the RandomLineSets
@@ -200,19 +215,22 @@ namespace Branching
                 rLineSet.Draw(spriteBatch);
 
             //rls.Draw(spriteBatch);
+            //spriteBatch.DrawString(Font1, "Angle: " + LineSet.Last<Line>().angle, Vector2.Zero, Color.White);
 
             spriteBatch.End();
             base.Draw(gameTime);
         }
 
+        /*
         public static float getAngleFromVector(Vector2 vec)
         {
-            float angle = (float)Math.Atan(vec.Y/ vec.X);
+            double angle = Math.Atan(vec.Y/vec.X);
             if (vec.X < 0)
-            { angle += (float)Math.PI; }
+            { angle += Math.PI; }
             if (angle < 0)
-            { angle += 2 * (float)Math.PI; }
-            return angle;
+            { angle += 2 * Math.PI; }
+            return (float)angle;
         }
+         */
     }
 }
